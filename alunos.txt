@@ -1,0 +1,2 @@
+Nome: andre Idade: 12 Sexo: m;
+Nome: jessy Idade: 13 Sexo: f;
