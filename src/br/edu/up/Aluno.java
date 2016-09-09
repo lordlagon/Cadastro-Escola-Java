@@ -4,6 +4,7 @@ package br.edu.up;
 			
 			private int matricula;
 			private String disciplina;
+			private String Diciplinas;
 			private double nota1;
 			private double nota2;
 			private double nota3;
@@ -48,6 +49,14 @@ package br.edu.up;
 			}
 			public void setMatricula(int matricula) {
 				this.matricula = matricula;
+			}
+
+			public String getDiciplinas() {
+				return Diciplinas;
+			}
+
+			public void setDiciplinas(String diciplinas) {
+				this.Diciplinas = diciplinas;
 			}
 			
 			
