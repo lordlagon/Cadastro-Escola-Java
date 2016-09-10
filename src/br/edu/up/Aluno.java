@@ -3,22 +3,26 @@ package br.edu.up;
 		public class Aluno extends Pessoa {
 			
 			private int matricula;
-			private String disciplina;
-			private String Diciplinas;
+			private String Disciplinas;
 			private double nota1;
 			private double nota2;
 			private double nota3;
-
+			String aprovado;
+			
+			
 			public boolean isAprovado(){
 				
 				double media = (nota1 + nota2 + nota3)/3;
 				
 				boolean isAp = false;
+				
 				if (media>6.0){
 				isAp = true;
 				}
 				return isAp;
-				}	
+				}
+			
+			
 			
 			public double getNota3() {
 				return nota3;
@@ -39,10 +43,10 @@ package br.edu.up;
 				this.nota1 = nota1;
 			}
 			public String getDisciplina() {
-				return disciplina;
+				return Disciplinas;
 			}
-			public void setDisciplina(String disciplina) {
-				this.disciplina = disciplina;
+			public void setDisciplina(String disciplinas) {
+				this.Disciplinas = disciplinas;
 			}
 			public int getMatricula() {
 				return matricula;
@@ -51,14 +55,7 @@ package br.edu.up;
 				this.matricula = matricula;
 			}
 
-			public String getDiciplinas() {
-				return Diciplinas;
-			}
 
-			public void setDiciplinas(String diciplinas) {
-				this.Diciplinas = diciplinas;
-			}
-			
 			
 
 		}
