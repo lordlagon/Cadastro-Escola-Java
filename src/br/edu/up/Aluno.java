@@ -12,9 +12,9 @@ package br.edu.up;
 			
 			public boolean isAprovado(){
 				
-				double media = (nota1 + nota2 + nota3)/3;
+			double media = (nota1 + nota2 + nota3)/3;
 				
-				boolean isAp = false;
+			boolean isAp = false;
 				
 				if (media>6.0){
 				isAp = true;

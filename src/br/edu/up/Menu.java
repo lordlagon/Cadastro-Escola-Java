@@ -18,11 +18,13 @@ public class Menu {
 		}
 		public static void menu() throws IOException {
 
+			// Menu
 				System.out.println("Digite o numero para a função");
 				System.out.println("1 - Cadastro de Aluno");
 				System.out.println("2 - Listar Alunos");
 				System.out.println("3 - Cadastro de Professores");
 				System.out.println("4 - Listar Professores");
+				System.out.println("5 - Apagar Arquivos");
 				System.out.println("0 - Sair");
 				
 				int numMenu;
@@ -41,8 +43,11 @@ public class Menu {
 						 
 						 break;
 					 case 4:
-						 
 						 listProfessor();
+						 break;
+
+					 case 5:
+						 apagarArquivo();
 						 break;
 						 
 					 case 0:
@@ -58,7 +63,7 @@ public class Menu {
 			
 		public static void cadAluno() throws IOException{
 
-			
+			// Cria o arquivo dos alunos
 			File Alunos = new File("alunos.txt");
 			BufferedWriter bw = new BufferedWriter(new FileWriter(Alunos,true));
 							
@@ -66,9 +71,9 @@ public class Menu {
 			int qntd=0;
 			qntd = leitor.nextInt();
 							
-			
+			//Vetor de lista de Alunos
 			List <Aluno> lista = new ArrayList<Aluno>();
-					
+			// Pega as informações dos Alunos
 			for (int i = 0; i < qntd; i++) {
 				Aluno A = new Aluno();
 				System.out.println("Digite um nome:");
@@ -85,10 +90,12 @@ public class Menu {
 				A.setNota2(leitor.nextDouble());
 				System.out.println("Digite a Nota3:");
 				A.setNota3(leitor.nextDouble());
+				
+				//Adiciona na lista
 				lista.add(A);
 			}	
 			
-			
+			//Grava as informações da Lista no Arquivo dos Alunos
 			for (Aluno Aluno : lista) {
 				
 				bw.write("Nome: " + Aluno.getNome()+" ");
@@ -122,12 +129,12 @@ public class Menu {
 				
 				
 						}
-					
 		public static void listAluno() throws IOException{
 				
 						
-
+			//Recupera o arquivo dos Alunos
 			File arquivo = new File("Alunos.txt");
+			//Le os dados do aqruivo e joga na tela
 			int numMenu = lerArquivo(arquivo);						
 			switch (numMenu) {
 				 case 1 :
@@ -138,11 +145,6 @@ public class Menu {
 				
 				 }
 			}
-	
-		
-
-		
-		
 		public static void cadProfessor() throws IOException {
 
 			File Professores = new File("professores.txt");
@@ -213,15 +215,53 @@ public class Menu {
 				 }
 	
 		}
+		public static void apagarArquivo() throws IOException{
+			
+			System.out.print("Informe o nome do arquivo que deseja apagar: ");
+			Scanner scan = new Scanner(System.in);
+			String nomeDoArquivo = scan.nextLine();
+			
+			File listas = new File(nomeDoArquivo);
+			if (listas.exists()) {
+			listas.delete();
+				System.out.println("Arquivo Excluído");
+		}else{
+			System.out.println("Arquivo não encontrado!");
+		}	
+			System.out.println("\nDeseja apagar outro Arquivo?");
+			System.out.println("1- Sim");
+			System.out.println("0- Não (Retorna ao Menu)");
+	
+			int nMenu = scan.nextInt();
+			switch (nMenu) {
+			 case 1 :
+			apagarArquivo();
+			break;
+			  default:
+			menu();
+					
+			 }
+			scan.close();
+		}
+			
+			
+		
+		
+		
 		private static int lerArquivo(File arquivo) throws FileNotFoundException {
+			
+			//Verifica se o arquivo existe
 			if (arquivo.exists()) {
-			Scanner scanLeitura = new Scanner(arquivo);
+			//Faz a leitura do arquivo e joga na tela
+				Scanner scanLeitura = new Scanner(arquivo);
 			int numeroDaLinha = 1;
 			while (scanLeitura.hasNext()) {
 				String linha = scanLeitura.nextLine();
 				System.out.println(numeroDaLinha++ + ": " + linha);
 		}
 				scanLeitura.close();
+		}else{
+			System.out.println("Arquivo não encontrado!");
 		}		
 	
 		System.out.println("\nDeseja verificar novamente?");
