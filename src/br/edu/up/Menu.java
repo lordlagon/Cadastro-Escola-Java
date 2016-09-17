@@ -19,13 +19,14 @@ public class Menu {
 		public static void menu() throws IOException {
 
 			// Menu
-				System.out.println("Digite o numero para a função");
-				System.out.println("1 - Cadastro de Aluno");
-				System.out.println("2 - Listar Alunos");
-				System.out.println("3 - Cadastro de Professores");
-				System.out.println("4 - Listar Professores");
-				System.out.println("5 - Apagar Arquivos");
-				System.out.println("0 - Sair");
+			
+				System.out.println("|Digite o numero para a funÃ§Ã£o|");
+				System.out.println("|1 - Cadastro de Aluno        |");
+				System.out.println("|2 - Listar Alunos            |");
+				System.out.println("|3 - Cadastro de Professores  |");
+				System.out.println("|4 - Listar Professores       |");
+				System.out.println("|5 - Apagar Arquivos          |");
+				System.out.println("|0 - Sair                     |");
 				
 				int numMenu;
 				System.out.println("Digite o numero: ");
@@ -51,29 +52,28 @@ public class Menu {
 						 break;
 						 
 					 case 0:
-						 System.out.println("!Você Fechou o Programa!\n");
+						 System.out.println("!VocÃª Fechou o Programa!\n");
 						 break;
 					  default:
 						 System.out.println("\n!Numero Incorreto!");
 						 menu();
-						 
-					 }
+				
+			}
 		 
 			}
-			
 		public static void cadAluno() throws IOException{
 
 			// Cria o arquivo dos alunos
 			File Alunos = new File("alunos.txt");
 			BufferedWriter bw = new BufferedWriter(new FileWriter(Alunos,true));
 							
-			System.out.println("Informe a quantidade de aluno que serão cadastrados:");
+			System.out.println("Informe a quantidade de aluno que serÃ£o cadastrados:");
 			int qntd=0;
 			qntd = leitor.nextInt();
 							
 			//Vetor de lista de Alunos
 			List <Aluno> lista = new ArrayList<Aluno>();
-			// Pega as informações dos Alunos
+			// Pega as informaÃ§Ãµes dos Alunos
 			for (int i = 0; i < qntd; i++) {
 				Aluno A = new Aluno();
 				System.out.println("Digite um nome:");
@@ -95,7 +95,7 @@ public class Menu {
 				lista.add(A);
 			}	
 			
-			//Grava as informações da Lista no Arquivo dos Alunos
+			//Grava as informaÃ§Ãµes da Lista no Arquivo dos Alunos
 			for (Aluno Aluno : lista) {
 				
 				bw.write("Nome: " + Aluno.getNome()+" ");
@@ -106,12 +106,13 @@ public class Menu {
 				bw.write("Nota2: " + Aluno.getNota2()+" ");
 				bw.write("Nota3: " + Aluno.getNota3()+" ");
 				bw.write("Aprovado: " + Aluno.isAprovado()+";\n");
+				
 			}
-			
+			bw.close();
 							
 			System.out.println("Deseja continuar cadastrando?");
 				System.out.println("1- Sim");
-				System.out.println("0- Não (Retorna ao Menu)");
+				System.out.println("0- NÃ£o (Retorna ao Menu)");
 		
 				int numMenu;
 				numMenu = leitor.nextInt();
@@ -125,13 +126,14 @@ public class Menu {
 					break;
 					 }
 		
-				bw.close();
+				//bw.close();
 				
 				
 						}
 		public static void listAluno() throws IOException{
 				
-						
+			System.out.println();
+			
 			//Recupera o arquivo dos Alunos
 			File arquivo = new File("Alunos.txt");
 			//Le os dados do aqruivo e joga na tela
@@ -150,7 +152,7 @@ public class Menu {
 			File Professores = new File("professores.txt");
 			BufferedWriter bw = new BufferedWriter(new FileWriter(Professores,true));
 							
-			System.out.println("Informe a quantidade de Professores que serão cadastrados:");
+			System.out.println("Informe a quantidade de Professores que serÃ£o cadastrados:");
 			int qntd=0;
 			qntd = leitor.nextInt();
 							
@@ -167,7 +169,6 @@ public class Menu {
 				Pr.setSexo(leitor.next());
 				System.out.println("Digite a Disciplina:");
 				Pr.setDisciplina(leitor.next());
-				
 				lista.add(Pr);
 			}	
 			
@@ -177,14 +178,14 @@ public class Menu {
 				bw.write("Nome: " + Prof.getNome()+" ");
 				bw.write("Idade: " + Prof.getIdade()+" ");
 				bw.write("Sexo: " + Prof.getSexo()+" ");
-				bw.write("Disciplina: " + Prof.getDisciplina()+" ");
+				bw.write("Disciplina: " + Prof.getDisciplina()+"\n");
 				
 			}
-			
+			bw.close();
 							
 				System.out.println("Deseja continuar cadastrando?");
 				System.out.println("1- Sim");
-				System.out.println("0- Não (Retorna ao Menu)");
+				System.out.println("0- NÃ£o (Retorna ao Menu)");
 		
 				int numMenu;
 				numMenu = leitor.nextInt();
@@ -198,7 +199,7 @@ public class Menu {
 					break;
 					 }
 		
-				bw.close();
+				//bw.close();
 				
 						}
 		public static void listProfessor() throws IOException{
@@ -211,7 +212,7 @@ public class Menu {
 				break;
 				  default:
 				menu();
-				
+			
 				 }
 	
 		}
@@ -223,14 +224,27 @@ public class Menu {
 			
 			File listas = new File(nomeDoArquivo);
 			if (listas.exists()) {
-			listas.delete();
-				System.out.println("Arquivo Excluído");
+					
+				System.out.println("\nTem certeza que deseja apagar o Arquivo "+nomeDoArquivo+"?");
+				System.out.println("1- Sim");
+				System.out.println("0- NÃ£o (Retorna ao Menu)");
+				
+				int del = scan.nextInt();
+				switch (del) {
+				 case 1 :
+				listas.delete();
+				System.out.println("Arquivo ExcluÃ­do");
+				break;
+				  default:
+				menu();
+				}		
+								
 		}else{
-			System.out.println("Arquivo não encontrado!");
+			System.out.println("Arquivo nÃ£o encontrado!");
 		}	
 			System.out.println("\nDeseja apagar outro Arquivo?");
 			System.out.println("1- Sim");
-			System.out.println("0- Não (Retorna ao Menu)");
+			System.out.println("0- NÃ£o (Retorna ao Menu)");
 	
 			int nMenu = scan.nextInt();
 			switch (nMenu) {
@@ -243,17 +257,12 @@ public class Menu {
 			 }
 			scan.close();
 		}
-			
-			
-		
-		
-		
 		private static int lerArquivo(File arquivo) throws FileNotFoundException {
 			
 			//Verifica se o arquivo existe
-			if (arquivo.exists()) {
+		if (arquivo.exists()) {
 			//Faz a leitura do arquivo e joga na tela
-				Scanner scanLeitura = new Scanner(arquivo);
+		Scanner scanLeitura = new Scanner(arquivo);
 			int numeroDaLinha = 1;
 			while (scanLeitura.hasNext()) {
 				String linha = scanLeitura.nextLine();
@@ -261,18 +270,20 @@ public class Menu {
 		}
 				scanLeitura.close();
 		}else{
-			System.out.println("Arquivo não encontrado!");
+			System.out.println("Arquivo nÃ£o encontrado!");
 		}		
-	
+
 		System.out.println("\nDeseja verificar novamente?");
 			System.out.println("1- Sim");
-			System.out.println("0- Não (Retorna ao Menu)");
-	
+			System.out.println("0- NÃ£o (Retorna ao Menu)");
 			int numMenu;
 			numMenu = leitor.nextInt();
 			return numMenu;
 		}
-}
+		}
+
+
+
 
 
 
